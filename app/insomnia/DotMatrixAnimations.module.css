@@ -1,0 +1,116 @@
+.previewPage {
+  background: #000;
+  min-height: 100vh;
+}
+
+.pageHeader {
+  padding: 80px 80px 48px;
+  border-bottom: 1px solid #404040;
+}
+
+.pageTitle {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.pageSubtitle {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #808080;
+}
+
+.grid {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  transition: opacity 180ms ease-out;
+  will-change: opacity;
+}
+
+.on {
+  opacity: 1;
+  box-shadow: 0 0 6px var(--insomnia-glow, rgba(255, 255, 255, 0.3));
+}
+
+.dotCellA.on {
+  box-shadow: 0 0 6px var(--insomnia-glow-a, rgba(255, 255, 255, 0.3));
+}
+
+.dotCellB.on {
+  box-shadow: 0 0 6px var(--insomnia-glow-b, rgba(255, 255, 255, 0.3));
+}
+
+.showcaseWrap {
+  padding: 60px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.showcaseSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.showcaseTitle {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #808080;
+  border-bottom: 1px solid #404040;
+  padding-bottom: 16px;
+}
+
+.showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 32px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.label {
+  color: #808080;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

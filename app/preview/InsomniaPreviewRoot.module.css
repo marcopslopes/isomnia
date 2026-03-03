@@ -1,0 +1,74 @@
+.colorBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid #404040;
+}
+
+.colorBarLabel {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #808080;
+}
+
+.colorSwatches {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #404040;
+  background: var(--swatch-color, #fff);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.swatch:hover {
+  border-color: #606060;
+  transform: scale(1.08);
+}
+
+.swatch[data-active='true'] {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px #000, 0 0 12px var(--swatch-color);
+}
+
+.swatchMixed {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #404040;
+  background: linear-gradient(135deg, var(--swatch-a) 50%, var(--swatch-b) 50%);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.swatchMixed:hover {
+  border-color: #606060;
+  transform: scale(1.08);
+}
+
+.swatchMixed[data-active='true'] {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px #000, 0 0 12px var(--swatch-a);
+}
+
+.colorBarValue {
+  font-size: 12px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

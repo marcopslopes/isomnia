@@ -7,17 +7,19 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px 24px;
-  background: rgba(0, 0, 0, 0.85);
-  border-bottom: 1px solid #404040;
+  padding: 12px 28px;
+  background: rgba(14, 14, 12, 0.9);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.1);
+  backdrop-filter: blur(8px);
 }
 
 .colorBarLabel {
-  font-size: 11px;
-  font-weight: 500;
+  font-family: var(--font-body), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #808080;
+  letter-spacing: 0.2em;
+  color: rgba(200, 169, 110, 0.45);
 }
 
 .colorSwatches {
@@ -27,48 +29,50 @@
 }
 
 .swatch {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 2px solid #404040;
+  border: 1px solid rgba(200, 169, 110, 0.2);
   background: var(--swatch-color, #fff);
   cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .swatch:hover {
-  border-color: #606060;
-  transform: scale(1.08);
+  border-color: rgba(200, 169, 110, 0.5);
+  transform: scale(1.1);
 }
 
 .swatch[data-active='true'] {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 1px #000, 0 0 12px var(--swatch-color);
+  border-color: #C8A96E;
+  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(200, 169, 110, 0.4);
 }
 
 .swatchMixed {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 2px solid #404040;
+  border: 1px solid rgba(200, 169, 110, 0.2);
   background: linear-gradient(135deg, var(--swatch-a) 50%, var(--swatch-b) 50%);
   cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .swatchMixed:hover {
-  border-color: #606060;
-  transform: scale(1.08);
+  border-color: rgba(200, 169, 110, 0.5);
+  transform: scale(1.1);
 }
 
 .swatchMixed[data-active='true'] {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 1px #000, 0 0 12px var(--swatch-a);
+  border-color: #C8A96E;
+  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(200, 169, 110, 0.4);
 }
 
 .colorBarValue {
-  font-size: 12px;
-  color: #b0b0b0;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(200, 169, 110, 0.45);
+  letter-spacing: 0.04em;
 }

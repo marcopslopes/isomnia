@@ -1,0 +1,121 @@
+.section {
+  background: #0e0e0c;
+  padding: 100px 56px 120px;
+  border-top: 1px solid rgba(200, 169, 110, 0.07);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 60px;
+  max-width: 560px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 110, 0.55);
+  margin-bottom: 24px;
+}
+
+.eyebrow::after {
+  content: '';
+  width: 56px;
+  height: 1px;
+  background: rgba(200, 169, 110, 0.25);
+}
+
+.heading {
+  margin: 0 0 20px;
+  font-family: var(--font-display), serif;
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #FAF8F5;
+}
+
+.heading em {
+  font-style: italic;
+  color: #C8A96E;
+}
+
+.subtext {
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(250, 248, 245, 0.42);
+  line-height: 1.9;
+  max-width: 460px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.card {
+  background: rgba(200, 169, 110, 0.02);
+  border: 1px solid rgba(200, 169, 110, 0.08);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(200, 169, 110, 0.16);
+}
+
+.cardVisual {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: 40px 36px;
+  min-height: 168px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(200, 169, 110, 0.06);
+}
+
+.cardBody {
+  padding: 22px 28px 26px;
+}
+
+.cardTitle {
+  margin: 0 0 6px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.7);
+}
+
+.cardDesc {
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(250, 248, 245, 0.28);
+  line-height: 1.7;
+}
+
+@media (max-width: 680px) {
+  .section {
+    padding: 72px 24px 80px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

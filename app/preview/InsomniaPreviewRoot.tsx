@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BreathingDotsHero } from '@/app/insomnia/BreathingDotsHero';
+import { UseCasesSection } from '@/app/insomnia/UseCasesSection';
 import { DotsPreviewClient } from './DotsPreviewClient';
 import {
   type InsomniaColorVariant,
@@ -59,6 +60,7 @@ export function InsomniaPreviewRoot() {
         <span className={rootStyles.colorBarValue}>{theme.label}</span>
       </div>
       <BreathingDotsHero />
+      <UseCasesSection />
       <DotsPreviewClient
         dotColor={!theme.isMixed ? theme.dotA : undefined}
         dotColorA={theme.isMixed ? theme.dotA : undefined}

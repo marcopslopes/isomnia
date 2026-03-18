@@ -49,11 +49,28 @@ export function BreathingDotsHero() {
           );
         })}
       </div>
+      <div className={styles.vignette} aria-hidden="true" />
       <div className={styles.content}>
-        <h1 className={styles.title}>Insomnia Icon Set</h1>
-        <p className={styles.subtitle}>
-          Animated 5×5 dot grid · 163 icons
+        <p className={styles.eyebrow}>Open Icon Set · Free to Use</p>
+        <h1 className={styles.title}>Insomnia</h1>
+        <p className={styles.descriptor}>
+          163 animated icons built on a 5×5 dot grid.
         </p>
+        <div className={styles.pills} role="list">
+          {['Apps', 'Dashboards', 'Motion', 'Design Systems', 'Creative'].map((label) => (
+            <span key={label} className={styles.pill} role="listitem">
+              {label}
+            </span>
+          ))}
+        </div>
+        <div className={styles.ctaGroup}>
+          <a href="#" className={styles.ctaPrimary} download>
+            ↓ Download Icons
+          </a>
+          <a href="#icons" className={styles.ctaSecondary}>
+            Browse icons
+          </a>
+        </div>
       </div>
     </section>
   );

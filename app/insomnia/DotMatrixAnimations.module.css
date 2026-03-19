@@ -5,7 +5,7 @@
 
 .pageHeader {
   padding: 80px 80px 48px;
-  border-bottom: 1px solid rgba(200, 169, 110, 0.1);
+  border-bottom: 1px solid rgba(42, 107, 69, 0.1);
 }
 
 .pageTitle {
@@ -24,7 +24,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(200, 169, 110, 0.45);
+  color: rgba(42, 107, 69, 0.45);
 }
 
 .grid {
@@ -76,8 +76,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: rgba(200, 169, 110, 0.45);
-  border-bottom: 1px solid rgba(200, 169, 110, 0.08);
+  color: rgba(250, 248, 245, 0.3);
+  border-bottom: 1px solid rgba(250, 248, 245, 0.06);
   padding-bottom: 16px;
 }
 
@@ -99,15 +99,29 @@
   cursor: pointer;
   border-radius: 2px;
   transition: background-color 0.2s ease;
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 .item:hover {
-  background: rgba(200, 169, 110, 0.05);
+  background: rgba(42, 107, 69, 0.05);
+}
+
+.showcaseSection[data-visible='true'] .item {
+  animation: itemReveal 0.4s ease forwards;
+  animation-delay: calc(var(--item-i, 0) * 30ms);
+}
+
+@keyframes itemReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .label {
   font-family: var(--font-body), sans-serif;
-  color: rgba(200, 169, 110, 0.35);
+  color: rgba(250, 248, 245, 0.22);
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;

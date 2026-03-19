@@ -2,6 +2,7 @@
 
 import { DotGrid } from './DotMatrixAnimations';
 import type { AnimationName } from './DotMatrixAnimations';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 import styles from './UseCasesSection.module.css';
 
 const USE_CASES: {
@@ -49,20 +50,29 @@ export function UseCasesSection() {
         <div className={styles.grid}>
           {USE_CASES.map((useCase) => (
             <div key={useCase.title} className={styles.card}>
-              <div className={styles.cardVisual}>
-                {useCase.icons.map((name) => (
-                  <DotGrid
-                    key={name}
-                    animation={name}
-                    size={40}
-                    speed={200}
-                    color="rgba(255,255,255,0.7)"
-                  />
-                ))}
-              </div>
-              <div className={styles.cardBody}>
-                <p className={styles.cardTitle}>{useCase.title}</p>
-                <p className={styles.cardDesc}>{useCase.description}</p>
+              <GlowingEffect
+                spread={40}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={2}
+              />
+              <div className={styles.cardInner}>
+                <div className={styles.cardVisual}>
+                  {useCase.icons.map((name) => (
+                    <DotGrid
+                      key={name}
+                      animation={name}
+                      size={40}
+                      speed={200}
+                      color="rgba(255,255,255,0.7)"
+                    />
+                  ))}
+                </div>
+                <div className={styles.cardBody}>
+                  <p className={styles.cardTitle}>{useCase.title}</p>
+                  <p className={styles.cardDesc}>{useCase.description}</p>
+                </div>
               </div>
             </div>
           ))}

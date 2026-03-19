@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './globals.css';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
 
 const cormorant = Cormorant_Garamond({

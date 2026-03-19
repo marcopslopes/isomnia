@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './DotMatrixAnimations.module.css';
 
 export type AnimationName =
@@ -166,7 +166,29 @@ export type AnimationName =
   | 'scissors'
   | 'wrench'
   | 'shield'
-  | 'warning';
+  | 'warning'
+  | 'info'
+  | 'success'
+  | 'error'
+  | 'radio'
+  | 'dropdown'
+  | 'dragHandle'
+  | 'filter'
+  | 'archive'
+  | 'bookmark'
+  | 'tag'
+  | 'flag'
+  | 'thumbsUp'
+  | 'thumbsDown'
+  | 'chat'
+  | 'comment'
+  | 'image'
+  | 'video'
+  | 'audioWave'
+  | 'wind'
+  | 'thermometer'
+  | 'battery'
+  | 'bluetooth';
 
 export const ANIMATION_NAMES: AnimationName[] = [
   'confetti',
@@ -332,6 +354,28 @@ export const ANIMATION_NAMES: AnimationName[] = [
   'wrench',
   'shield',
   'warning',
+  'info',
+  'success',
+  'error',
+  'radio',
+  'dropdown',
+  'dragHandle',
+  'filter',
+  'archive',
+  'bookmark',
+  'tag',
+  'flag',
+  'thumbsUp',
+  'thumbsDown',
+  'chat',
+  'comment',
+  'image',
+  'video',
+  'audioWave',
+  'wind',
+  'thermometer',
+  'battery',
+  'bluetooth',
 ];
 
 export type ShowcaseTheme =
@@ -351,7 +395,8 @@ export type ShowcaseTheme =
   | 'music'
   | 'tech'
   | 'tools'
-  | 'status';
+  | 'status'
+  | 'social';
 
 export const SHOWCASE_THEMES: { theme: ShowcaseTheme; title: string; names: AnimationName[] }[] = [
   {
@@ -370,15 +415,17 @@ export const SHOWCASE_THEMES: { theme: ShowcaseTheme; title: string; names: Anim
       'wifi', 'signal', 'eye', 'play', 'loading', 'target', 'flame', 'lightning',
       'sparkle', 'hourglass', 'crown', 'lock',
       'star', 'check', 'close', 'plus', 'minus', 'question', 'exclamation', 'at', 'hash',
+      'info', 'success', 'error', 'flag',
     ],
   },
   {
     theme: 'ui',
     title: 'UI',
     names: [
-      'toggle', 'checkbox', 'menu', 'upload', 'download', 'search', 'progress',
+      'toggle', 'checkbox', 'radio', 'menu', 'upload', 'download', 'search', 'progress',
       'type', 'expand', 'slider', 'notification', 'window', 'sort', 'sidebar',
       'refresh', 'settings', 'home', 'save', 'share', 'link', 'trash',
+      'dropdown', 'dragHandle', 'filter', 'archive', 'bookmark', 'tag',
     ],
   },
   {
@@ -415,12 +462,17 @@ export const SHOWCASE_THEMES: { theme: ShowcaseTheme; title: string; names: Anim
   {
     theme: 'media',
     title: 'Media',
-    names: ['pause', 'stop', 'record', 'skipNext', 'skipPrev'],
+    names: ['pause', 'stop', 'record', 'skipNext', 'skipPrev', 'image', 'video', 'audioWave'],
   },
   {
     theme: 'communication',
     title: 'Communication',
     names: ['mail', 'send'],
+  },
+  {
+    theme: 'social',
+    title: 'Social',
+    names: ['thumbsUp', 'thumbsDown', 'chat', 'comment'],
   },
   {
     theme: 'places',
@@ -440,7 +492,7 @@ export const SHOWCASE_THEMES: { theme: ShowcaseTheme; title: string; names: Anim
   {
     theme: 'nature',
     title: 'Nature',
-    names: ['sun', 'moon', 'cloud', 'snowflake', 'leaf', 'flower'],
+    names: ['sun', 'moon', 'cloud', 'snowflake', 'leaf', 'flower', 'wind', 'thermometer'],
   },
   {
     theme: 'music',
@@ -450,7 +502,7 @@ export const SHOWCASE_THEMES: { theme: ShowcaseTheme; title: string; names: Anim
   {
     theme: 'tech',
     title: 'Tech & Files',
-    names: ['phone', 'camera', 'folder', 'file'],
+    names: ['phone', 'camera', 'folder', 'file', 'battery', 'bluetooth'],
   },
   {
     theme: 'tools',
@@ -1792,12 +1844,14 @@ function genSidebar(): string[] {
 
 function buildFromTip(stages: [number, number][][]): string[] {
   const fwd: string[] = [];
-  const all: [number, number][] = [];
+  const accumulated: [number, number][] = [];
   for (const stage of stages) {
-    all.push(...stage);
-    const g = mkGrid();
-    for (const [r, c] of all) setDot(g, r, c);
-    fwd.push(toStr(g));
+    for (const dot of stage) {
+      accumulated.push(dot);
+      const g = mkGrid();
+      for (const [r, c] of accumulated) setDot(g, r, c);
+      fwd.push(toStr(g));
+    }
   }
   return mirror(fwd);
 }
@@ -3075,6 +3129,241 @@ function genWarning(): string[] {
   ]);
 }
 
+/* ── New symbols ───────────────────────────────── */
+
+function genInfo(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 4], [2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 1], [4, 2], [4, 3]],
+    [[1, 2]],
+    [[3, 2]],
+  ]);
+}
+
+function genSuccess(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 4], [2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 1], [4, 2], [4, 3]],
+    [[3, 1], [2, 2], [1, 3]],
+  ]);
+}
+
+function genError(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 4], [2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 1], [4, 2], [4, 3]],
+    [[1, 1], [2, 2], [3, 3]],
+    [[1, 3], [3, 1]],
+  ]);
+}
+
+function genFlag(): string[] {
+  return buildFromTip([
+    [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]],
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 1], [1, 2]],
+    [[2, 1]],
+  ]);
+}
+
+/* ── New UI ────────────────────────────────────── */
+
+function genRadio(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 4]],
+    [[2, 0], [2, 4]],
+    [[3, 0], [3, 4]],
+    [[4, 1], [4, 2], [4, 3]],
+    [[1, 2], [2, 1], [2, 3], [3, 2]],
+    [[2, 2]],
+  ]);
+}
+
+function genDropdown(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+    [[1, 0], [1, 4]],
+    [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4]],
+    [[3, 1], [3, 3]],
+    [[4, 2]],
+  ]);
+}
+
+function genDragHandle(): string[] {
+  return buildFromTip([
+    [[1, 1], [1, 3]],
+    [[2, 1], [2, 3]],
+    [[3, 1], [3, 3]],
+  ]);
+}
+
+function genFilter(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+    [[1, 1], [1, 2], [1, 3]],
+    [[2, 2]],
+    [[3, 2]],
+    [[4, 2]],
+  ]);
+}
+
+function genArchive(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+    [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4]],
+    [[2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4]],
+  ]);
+}
+
+function genBookmark(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+    [[1, 0], [1, 4], [2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 1], [4, 3]],
+  ]);
+}
+
+function genTag(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3]],
+    [[1, 0], [2, 0], [3, 0], [4, 0]],
+    [[4, 1], [4, 2], [4, 3]],
+    [[1, 3], [3, 3]],
+    [[1, 4], [2, 4], [3, 4]],
+  ]);
+}
+
+/* ── Social ────────────────────────────────────── */
+
+function genThumbsUp(): string[] {
+  return buildFromTip([
+    [[4, 1], [4, 2], [4, 3]],
+    [[3, 1], [3, 3]],
+    [[2, 1], [2, 2], [2, 3]],
+    [[1, 2]],
+    [[0, 2]],
+  ]);
+}
+
+function genThumbsDown(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 1], [1, 3]],
+    [[2, 1], [2, 2], [2, 3]],
+    [[3, 2]],
+    [[4, 2]],
+  ]);
+}
+
+function genChat(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 4]],
+    [[2, 0], [2, 4]],
+    [[3, 0], [3, 1], [3, 2], [3, 3]],
+    [[4, 0]],
+  ]);
+}
+
+function genComment(): string[] {
+  return buildFromTip([
+    [[0, 1], [0, 2], [0, 3]],
+    [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4]],
+    [[2, 0], [2, 4]],
+    [[3, 0], [3, 1], [3, 2], [3, 4]],
+    [[4, 1]],
+  ]);
+}
+
+/* ── New media ─────────────────────────────────── */
+
+function genImage(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+    [[1, 0], [1, 4], [2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4]],
+    [[2, 2]],
+    [[1, 1]],
+  ]);
+}
+
+function genVideo(): string[] {
+  return buildFromTip([
+    [[0, 0], [0, 1], [0, 2], [0, 3]],
+    [[1, 0], [2, 0], [3, 0]],
+    [[4, 0], [4, 1], [4, 2], [4, 3]],
+    [[1, 3], [2, 3], [3, 3]],
+    [[1, 4], [2, 4], [3, 4]],
+    [[1, 1], [2, 1], [3, 1]],
+    [[1, 2], [3, 2]],
+    [[2, 3]],
+  ]);
+}
+
+function genAudioWave(): string[] {
+  const frames: string[] = [];
+  for (let f = 0; f < 10; f++) {
+    const g = mkGrid();
+    for (let col = 0; col < G; col++) {
+      const phase = f * 0.9 + col * 1.4;
+      const h = Math.max(1, Math.round(1 + 2 * (0.5 + 0.5 * Math.sin(phase))));
+      const start = CENTER - Math.floor(h / 2);
+      for (let row = start; row < start + h; row++) {
+        if (row >= 0 && row < G) setDot(g, row, col);
+      }
+    }
+    frames.push(toStr(g));
+  }
+  return frames;
+}
+
+/* ── New nature ────────────────────────────────── */
+
+function genWind(): string[] {
+  return buildFromTip([
+    [[1, 0], [1, 1], [1, 2], [1, 3]],
+    [[2, 1], [2, 2], [2, 3], [2, 4]],
+    [[3, 0], [3, 1], [3, 2], [3, 3]],
+  ]);
+}
+
+function genThermometer(): string[] {
+  return buildFromTip([
+    [[4, 1], [4, 2], [4, 3]],
+    [[3, 1], [3, 3]],
+    [[3, 2]],
+    [[2, 2]],
+    [[1, 2]],
+    [[0, 2]],
+  ]);
+}
+
+/* ── New tech ──────────────────────────────────── */
+
+function genBattery(): string[] {
+  return buildFromTip([
+    [[0, 1]],
+    [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4]],
+    [[2, 0], [2, 4], [3, 0], [3, 4]],
+    [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4]],
+    [[2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]],
+  ]);
+}
+
+function genBluetooth(): string[] {
+  return buildFromTip([
+    [[0, 2], [1, 2], [2, 2], [3, 2], [4, 2]],
+    [[1, 3], [3, 3]],
+    [[0, 4], [4, 4]],
+    [[2, 1]],
+  ]);
+}
+
 /* ── Pre-computed frames ───────────────────────── */
 
 const ANIMATIONS: Record<AnimationName, string[]> = {
@@ -3241,6 +3530,28 @@ const ANIMATIONS: Record<AnimationName, string[]> = {
   wrench: genWrench(),
   shield: genShield(),
   warning: genWarning(),
+  info: genInfo(),
+  success: genSuccess(),
+  error: genError(),
+  flag: genFlag(),
+  radio: genRadio(),
+  dropdown: genDropdown(),
+  dragHandle: genDragHandle(),
+  filter: genFilter(),
+  archive: genArchive(),
+  bookmark: genBookmark(),
+  tag: genTag(),
+  thumbsUp: genThumbsUp(),
+  thumbsDown: genThumbsDown(),
+  chat: genChat(),
+  comment: genComment(),
+  image: genImage(),
+  video: genVideo(),
+  audioWave: genAudioWave(),
+  wind: genWind(),
+  thermometer: genThermometer(),
+  battery: genBattery(),
+  bluetooth: genBluetooth(),
 };
 
 /* ── Components ────────────────────────────────── */
@@ -3376,17 +3687,40 @@ export function DotMatrixShowcase({
   dotColorB?: string;
 }) {
   const useDual = dotColorA != null && dotColorB != null;
+  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  const setRef = useCallback((theme: string) => (el: HTMLElement | null) => {
+    if (el) sectionRefs.current.set(theme, el);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-visible', 'true');
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+    for (const el of sectionRefs.current.values()) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className={`${styles.showcaseWrap} ${className ?? ''}`}>
       {SHOWCASE_THEMES.map(({ theme, title, names }) => (
-        <section key={theme} className={styles.showcaseSection}>
+        <section key={theme} ref={setRef(theme)} className={styles.showcaseSection}>
           <h2 className={styles.showcaseTitle}>{title}</h2>
           <div className={styles.showcase}>
-            {names.map((name) => (
+            {names.map((name, index) => (
               <button
                 key={name}
                 type="button"
                 className={styles.item}
+                style={{ '--item-i': index } as React.CSSProperties}
                 onClick={() => onSelect?.(name)}
                 aria-label={`View ${name}`}
               >

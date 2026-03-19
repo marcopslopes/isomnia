@@ -9,6 +9,13 @@
   overflow: hidden;
 }
 
+.bgImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+
 .canvas {
   position: absolute;
   inset: 0;
@@ -87,7 +94,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: rgba(200, 169, 110, 0.55);
+  color: rgba(42, 107, 69, 0.55);
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -97,7 +104,7 @@
   content: '';
   width: 36px;
   height: 1px;
-  background: rgba(200, 169, 110, 0.25);
+  background: rgba(42, 107, 69, 0.25);
 }
 
 .title {
@@ -113,7 +120,7 @@
 
 .title em {
   font-style: italic;
-  color: #C8A96E;
+  color: #2A6B45;
 }
 
 /* preserved — unused but kept to avoid dead-class warnings */
@@ -154,9 +161,9 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(200, 169, 110, 0.55);
-  border: 1px solid rgba(200, 169, 110, 0.12);
-  background: rgba(200, 169, 110, 0.03);
+  color: rgba(42, 107, 69, 0.55);
+  border: 1px solid rgba(42, 107, 69, 0.12);
+  background: rgba(42, 107, 69, 0.03);
   border-radius: 2px;
   padding: 5px 12px;
 }
@@ -173,7 +180,7 @@
   align-items: center;
   gap: 10px;
   padding: 15px 36px;
-  background: #C8A96E;
+  background: #2A6B45;
   color: #0e0e0c;
   font-family: var(--font-body), sans-serif;
   font-size: 10px;
@@ -191,7 +198,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: #dfc898;
+  background: #4A9E6A;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -211,7 +218,7 @@
 }
 
 .ctaPrimary:focus-visible {
-  outline: 2px solid #C8A96E;
+  outline: 2px solid #2A6B45;
   outline-offset: 3px;
 }
 

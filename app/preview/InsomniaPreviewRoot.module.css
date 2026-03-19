@@ -1,16 +1,13 @@
 .colorBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px 28px;
-  background: rgba(14, 14, 12, 0.9);
-  border-bottom: 1px solid rgba(200, 169, 110, 0.1);
-  backdrop-filter: blur(8px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 80px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(42, 107, 69, 0.1);
 }
 
 .colorBarLabel {
@@ -19,7 +16,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(200, 169, 110, 0.45);
+  color: rgba(42, 107, 69, 0.45);
 }
 
 .colorSwatches {
@@ -32,40 +29,40 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1px solid rgba(200, 169, 110, 0.2);
+  border: 1px solid rgba(42, 107, 69, 0.2);
   background: var(--swatch-color, #fff);
   cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .swatch:hover {
-  border-color: rgba(200, 169, 110, 0.5);
+  border-color: rgba(42, 107, 69, 0.5);
   transform: scale(1.1);
 }
 
 .swatch[data-active='true'] {
-  border-color: #C8A96E;
-  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(200, 169, 110, 0.4);
+  border-color: #2A6B45;
+  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(42, 107, 69, 0.4);
 }
 
 .swatchMixed {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1px solid rgba(200, 169, 110, 0.2);
+  border: 1px solid rgba(42, 107, 69, 0.2);
   background: linear-gradient(135deg, var(--swatch-a) 50%, var(--swatch-b) 50%);
   cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .swatchMixed:hover {
-  border-color: rgba(200, 169, 110, 0.5);
+  border-color: rgba(42, 107, 69, 0.5);
   transform: scale(1.1);
 }
 
 .swatchMixed[data-active='true'] {
-  border-color: #C8A96E;
-  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(200, 169, 110, 0.4);
+  border-color: #2A6B45;
+  box-shadow: 0 0 0 1px #0e0e0c, 0 0 10px rgba(42, 107, 69, 0.4);
 }
 
 .colorBarValue {
@@ -73,6 +70,6 @@
   font-style: italic;
   font-size: 13px;
   font-weight: 300;
-  color: rgba(200, 169, 110, 0.45);
+  color: rgba(42, 107, 69, 0.45);
   letter-spacing: 0.04em;
 }

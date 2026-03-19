@@ -20,7 +20,6 @@ export function InsomniaPreviewRoot() {
       className={styles.previewPage}
       style={
         {
-          paddingTop: 52,
           '--insomnia-dot-a': theme.dotA,
           '--insomnia-dot-b': theme.dotB,
           '--insomnia-dot-a-dim': theme.dimA,
@@ -31,6 +30,8 @@ export function InsomniaPreviewRoot() {
         } as React.CSSProperties
       }
     >
+      <BreathingDotsHero />
+      <UseCasesSection />
       <div className={rootStyles.colorBar}>
         <span className={rootStyles.colorBarLabel}>Color</span>
         <div className={rootStyles.colorSwatches} role="tablist" aria-label="Dot color variant">
@@ -59,8 +60,6 @@ export function InsomniaPreviewRoot() {
         </div>
         <span className={rootStyles.colorBarValue}>{theme.label}</span>
       </div>
-      <BreathingDotsHero />
-      <UseCasesSection />
       <DotsPreviewClient
         dotColor={!theme.isMixed ? theme.dotA : undefined}
         dotColorA={theme.isMixed ? theme.dotA : undefined}

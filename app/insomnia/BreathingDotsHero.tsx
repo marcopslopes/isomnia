@@ -1,53 +1,14 @@
 'use client';
 
-import { useMemo } from 'react';
+import Image from 'next/image';
+import heroImg from '../images/insomnia.png';
 import styles from './BreathingDotsHero.module.css';
 
-const COLS = 24;
-const ROWS = 14;
-const CENTER_X = (COLS - 1) / 2;
-const CENTER_Y = (ROWS - 1) / 2;
-
-/**
- * Hero with breathing-dots effect. Uses CSS animation (radial wave) so it
- * works without Three.js. The full GitHub tutorial version lives in
- * BreathingDotsCanvas + BreathingDotsScene for use when R3F/React version is aligned.
- */
 export function BreathingDotsHero() {
-  const dots = useMemo(() => {
-    return Array.from({ length: COLS * ROWS }, (_, i) => {
-      const col = i % COLS;
-      const row = Math.floor(i / COLS);
-      const dx = col - CENTER_X;
-      const dy = row - CENTER_Y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      return Math.round(distance * 2);
-    });
-  }, []);
-
   return (
     <section className={styles.hero} aria-label="Hero">
-      <div
-        className={styles.grid}
-        style={
-          {
-            '--cols': COLS,
-            '--rows': ROWS,
-          } as React.CSSProperties
-        }
-      >
-        {dots.map((delayIndex, i) => {
-          const col = i % COLS;
-          const row = Math.floor(i / COLS);
-          const isA = (row + col) % 2 === 0;
-          return (
-            <span
-              key={i}
-              className={`${styles.dot} ${isA ? styles.dotA : styles.dotB}`}
-              style={{ '--i': delayIndex } as React.CSSProperties}
-            />
-          );
-        })}
+      <div className={styles.bgImage} aria-hidden="true">
+        <Image src={heroImg} alt="" fill style={{ objectFit: 'cover' }} priority />
       </div>
       <div className={styles.vignette} aria-hidden="true" />
       <div className={styles.content}>

@@ -22,7 +22,7 @@
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(200, 169, 110, 0.55);
+  color: rgba(42, 107, 69, 0.55);
   margin-bottom: 24px;
 }
 
@@ -30,7 +30,7 @@
   content: '';
   width: 56px;
   height: 1px;
-  background: rgba(200, 169, 110, 0.25);
+  background: rgba(42, 107, 69, 0.25);
 }
 
 .heading {
@@ -45,7 +45,7 @@
 
 .heading em {
   font-style: italic;
-  color: #C8A96E;
+  color: #2A6B45;
 }
 
 .subtext {
@@ -65,8 +65,16 @@
 }
 
 .card {
-  background: rgba(200, 169, 110, 0.02);
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid rgba(42, 107, 69, 0.08);
+}
+
+.cardInner {
+  background: #161616;
   overflow: hidden;
+  border-radius: 5px;
+  height: 100%;
 }
 
 .cardVisual {

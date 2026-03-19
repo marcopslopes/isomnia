@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0e0e0c;
+  --foreground: #FAF8F5;
+  --border: rgba(42, 107, 69, 0.15);
+  --muted: rgba(42, 107, 69, 0.08);
+  --muted-foreground: rgba(250, 248, 245, 0.45);
+  --black: #0e0e0c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+}
+
+/* ── Glowing effect ─────────────────────────────── */
+
+.glow {
+  border-radius: inherit;
+}
+
+.glow::after {
+  content: "";
+  border-radius: inherit;
+  position: absolute;
+  inset: calc(-1 * var(--glowingeffect-border-width, 1px));
+  border: var(--glowingeffect-border-width, 1px) solid transparent;
+  background: var(--gradient);
+  background-attachment: fixed;
+  opacity: var(--active, 0);
+  transition: opacity 300ms;
+  -webkit-mask-clip: padding-box, border-box;
+  mask-clip: padding-box, border-box;
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--start) - var(--spread)) * 1deg),
+      #00000000 0deg,
+      #fff,
+      #00000000 calc(var(--spread) * 2deg)
+    );
+  mask-image:
+    linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--start) - var(--spread)) * 1deg),
+      #00000000 0deg,
+      #fff,
+      #00000000 calc(var(--spread) * 2deg)
+    );
+}
